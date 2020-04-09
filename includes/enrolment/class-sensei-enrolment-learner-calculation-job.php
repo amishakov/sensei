@@ -62,6 +62,9 @@ class Sensei_Enrolment_Learner_Calculation_Job implements Sensei_Background_Job_
 	 * Run the job.
 	 */
 	public function run() {
+		// We do not want to store negative enrolment results in this bulk background job.
+		Sensei_Course_Enrolment::set_store_negative_enrolment_results( false );
+
 		$enrolment_manager = Sensei_Course_Enrolment_Manager::instance();
 
 		$meta_query = [
