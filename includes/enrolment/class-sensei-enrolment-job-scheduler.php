@@ -90,6 +90,12 @@ class Sensei_Enrolment_Job_Scheduler {
 		}
 
 		$job = new Sensei_Enrolment_Learner_Calculation_Job( 20 );
+		if ( $job->in_progress() ) {
+			return;
+		}
+
+		$job->set_last_user_id( 0 );
+
 		Sensei_Scheduler::instance()->schedule_job( $job );
 	}
 

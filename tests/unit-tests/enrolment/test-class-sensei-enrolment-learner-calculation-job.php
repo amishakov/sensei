@@ -25,6 +25,7 @@ class Sensei_Enrolment_Learner_Calculation_Job_Test extends WP_UnitTestCase {
 	 */
 	public function testSchedulerCalculatesEnrolmentsForOneBatch() {
 		$job = new Sensei_Enrolment_Learner_Calculation_Job( 2 );
+		$job->set_last_user_id( 0 );
 
 		$mock = $this->getMockBuilder( Sensei_Course_Enrolment_Manager::class )
 			->disableOriginalConstructor()
@@ -62,6 +63,8 @@ class Sensei_Enrolment_Learner_Calculation_Job_Test extends WP_UnitTestCase {
 	public function testSchedulerCalculatesEnrolmentsForAllBatches() {
 		$enrolment_manager = Sensei_Course_Enrolment_Manager::instance();
 		$job               = new Sensei_Enrolment_Learner_Calculation_Job( 2 );
+
+		$job->set_last_user_id( 0 );
 
 		$mock = $this->getMockBuilder( Sensei_Course_Enrolment_Manager::class )
 			->disableOriginalConstructor()
